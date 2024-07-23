@@ -10,6 +10,11 @@ app.use(express.json()); // configura tipo de dato json
 
 app.use('/api', routes); // configura la url base y rutas
 
+// Define una ruta para la raíz
+app.get('/', (req, res) => {
+    res.send('Servidor funcionando correctamente');
+});
+
 app.listen(port, () => { //ejecuta la api por el puerto 3000
     // luego de ejecutar imprime un mensaje
     console.log(`Servidor corriendo en el puerto ${port}`) //
