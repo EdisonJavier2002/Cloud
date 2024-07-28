@@ -26,7 +26,7 @@ app.use('/api', routes); // configura la url base y rutas
 app.get('/', async (req, res) => {
     try {
         const customers = await knex('customer').select('*');
-        res.render('index', { customers });
+        res.render('customer', { customers });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -42,6 +42,26 @@ app.post('/add-customer', async (req, res) => {
     }
 });
 
+// Ruta para servir la vista de categorías
+app.get('/categories', async (req, res) => {
+    try {
+        const categories = await knex('category').select('*');
+        res.render('category', { categories });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para manejar la inserción de nuevas categorías
+app.post('/add-category', async (req, res) => {
+    try {
+        const { name, description, code } = req.body;
+        await knex('category').insert({ name, description, code });
+        res.redirect('/categories');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 app.listen(port, () => { //ejecuta la api por el puerto 3000
     // luego de ejecutar imprime un mensaje
