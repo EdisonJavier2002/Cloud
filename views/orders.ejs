@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">GESTIÓN DE ÓRDENES</h1>
+        <div class="mt-3">
+            <a href="/customers" class="btn btn-primary">Clientes</a>
+            <a href="/categories" class="btn btn-secondary">Categorías</a>
+            <a href="/employees" class="btn btn-info">Empleados</a>
+            <a href="/products" class="btn btn-warning">Productos</a>
+            <a href="/orders" class="btn btn-danger">Órdenes</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="mt-4">Lista de Órdenes</h1>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Número</th>
+                    <th>Fecha</th>
+                    <th>Dirección</th>
+                    <th>ID Cliente</th>
+                    <th>ID Empleado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td><%= order.id %></td>
+                        <td><%= order.number %></td>
+                        <td><%= order.date %></td>
+                        <td><%= order.address %></td>
+                        <td><%= order.customer_id %></td>
+                        <td><%= order.employee_id %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <h2 class="mt-4">Agregar nueva Orden</h2>
+        <form action="/add-order" method="post" class="mt-3">
+            <div class="form-group">
+                <label for="number">Número:</label>
+                <input type="text" id="number" name="number" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Fecha:</label>
+                <input type="datetime-local" id="date" name="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="customer_id">ID Cliente:</label>
+                <input type="number" id="customer_id" name="customer_id" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="employee_id">ID Empleado:</label>
+                <input type="number" id="employee_id" name="employee_id" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Orden</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -48,6 +48,36 @@ app.get('/categories', async (req, res) => {
     }
 });
 
+// Ruta para servir la vista de empleados
+app.get('/employees', async (req, res) => {
+    try {
+        const employees = await knex('employee').select('*');
+        res.render('employees', { title: 'Employee Management', employees });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para servir la vista de productos
+app.get('/products', async (req, res) => {
+    try {
+        const products = await knex('product').select('*');
+        res.render('products', { title: 'Product Management', products });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para servir la vista de ordenes
+app.get('/orders', async (req, res) => {
+    try {
+        const orders = await knex('order').select('*');
+        res.render('orders', { title: 'Order Management', orders });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Ruta para manejar la inserción de nuevos clientes
 app.post('/add-customer', async (req, res) => {
     try {
@@ -63,6 +93,36 @@ app.post('/add-category', async (req, res) => {
     try {
         await knex('category').insert(req.body);
         res.redirect('/categories');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para manejar la inserción de nuevos empleados
+app.post('/add-employee', async (req, res) => {
+    try {
+        await knex('employee').insert(req.body);
+        res.redirect('/employees');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para manejar la inserción de nuevos productos
+app.post('/add-product', async (req, res) => {
+    try {
+        await knex('product').insert(req.body);
+        res.redirect('/products');
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para manejar la inserción de nuevas ordenes
+app.post('/add-order', async (req, res) => {
+    try {
+        await knex('order').insert(req.body);
+        res.redirect('/orders');
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

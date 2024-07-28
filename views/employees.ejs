@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Category Management</title>
+    <title><%= title %></title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-4">GESTIÒN DE CATEGORIAS</h1>
+        <h1 class="mt-4">GESTIÓN DE EMPLEADOS</h1>
         <div class="mt-3">
             <a href="/customers" class="btn btn-primary">Clientes</a>
             <a href="/categories" class="btn btn-secondary">Categorías</a>
@@ -19,43 +19,43 @@
         </div>
     </div>
     <div class="container">
-        <h1 class="mt-4">Lista de Categorias</h1>
+        <h1 class="mt-4">Lista de Empleados</h1>
         <table class="table table-striped mt-3">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Code</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Edad</th>
                 </tr>
             </thead>
             <tbody>
-                <% categories.forEach(category => { %>
+                <% employees.forEach(employee => { %>
                     <tr>
-                        <td><%= category.id %></td>
-                        <td><%= category.name %></td>
-                        <td><%= category.description %></td>
-                        <td><%= category.code %></td>
+                        <td><%= employee.id %></td>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.email %></td>
+                        <td><%= employee.age %></td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
 
-        <h2 class="mt-4">Agregar nueva Categoria</h2>
-        <form action="/add-category" method="post" class="mt-3">
+        <h2 class="mt-4">Agregar nuevo Empleado</h2>
+        <form action="/add-employee" method="post" class="mt-3">
             <div class="form-group">
-                <label for="name">Name:</label>
+                <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" class="form-control" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="code">Code:</label>
-                <input type="text" id="code" name="code" class="form-control" required>
+                <label for="age">Edad:</label>
+                <input type="number" id="age" name="age" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Agregar Categoria</button>
+            <button type="submit" class="btn btn-primary">Agregar Empleado</button>
         </form>
     </div>
 </body>
