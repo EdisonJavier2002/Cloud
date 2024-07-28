@@ -13,7 +13,7 @@ class Order extends Model {
             properties: {
                 id: { type: 'integer' },
                 number: { type: 'string', minLength: 1 },
-                date: { type: 'string', format: 'date-time' },
+                date: { type: 'string', format: 'date' },
                 address: { type: 'string' },
                 customer_id: { type: 'integer' },
                 employee_id: { type: 'integer' }
