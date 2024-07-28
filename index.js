@@ -25,7 +25,7 @@ app.use('/api', routes); // configura la url base y rutas
 // RUTAS PARA LAS VISTAS--------------------------------------------------------------------------------
 // Ruta para servir la vista principal con el menú
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home' });
+    res.render('index');
 });
 
 // Ruta para servir la vista de clientes
