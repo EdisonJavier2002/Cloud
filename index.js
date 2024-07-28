@@ -7,6 +7,12 @@ const routes = require('./routes'); //llamado a rutas
 const app = express(); // creamos una nueva instancia
 const port = 3000; // puerto de salida
 
+// Middleware para analizar cuerpos de solicitudes URL-encoded
+app.use(express.urlencoded({ extended: true }));
+
+// Servir archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Configurar EJS, -------------------------------esto es añadido los 2 apps
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
