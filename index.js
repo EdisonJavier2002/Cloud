@@ -22,21 +22,17 @@ app.use(express.json()); // configura tipo de dato json
 
 app.use('/api', routes); // configura la url base y rutas
 
-// Ruta para servir la vista principal, -----------esto es añadido
-app.get('/', async (req, res) => {
-    try {
-        const customers = await knex('customer').select('*');
-        res.render('customer', { customers });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
+// RUTAS PARA LAS VISTAS--------------------------------------------------------------------------------
+// Ruta para servir la vista principal con el menú
+app.get('/', (req, res) => {
+    res.render('index');
 });
 
-// Ruta para manejar la inserción de nuevos clientes, -------------------esto es añadido
-app.post('/add-customer', async (req, res) => {
+// Ruta para servir la vista de clientes
+app.get('/customers', async (req, res) => {
     try {
-        await knex('customer').insert(req.body);
-        res.redirect('/');
+        const customers = await knex('customer').select('*');
+        res.render('customers', { customers });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -46,7 +42,17 @@ app.post('/add-customer', async (req, res) => {
 app.get('/categories', async (req, res) => {
     try {
         const categories = await knex('category').select('*');
-        res.render('category', { categories });
+        res.render('categories', { categories });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Ruta para manejar la inserción de nuevos clientes
+app.post('/add-customer', async (req, res) => {
+    try {
+        await knex('customer').insert(req.body);
+        res.redirect('/customers');
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -55,8 +61,7 @@ app.get('/categories', async (req, res) => {
 // Ruta para manejar la inserción de nuevas categorías
 app.post('/add-category', async (req, res) => {
     try {
-        const { name, description, code } = req.body;
-        await knex('category').insert({ name, description, code });
+        await knex('category').insert(req.body);
         res.redirect('/categories');
     } catch (error) {
         res.status(500).json({ error: error.message });
