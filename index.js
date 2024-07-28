@@ -1,5 +1,6 @@
 // importar librerias
 const express = require('express'); //framework de desarrollo
+const path = require('path'); // Importar el módulo path, ------------esto es añadido
 const knex = require('./db'); //llamado a conf de db
 const routes = require('./routes'); //llamado a rutas
 
