@@ -5,6 +5,8 @@
 exports.up = function(knex) {
     return knex.schema.table('customer', function(table){
         table.integer('age');
+        table.string('surname');
+        table.string('address'); 
       });
 };
 
@@ -15,5 +17,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema.table('customer', function(table){
         table.dropColumn('age');
+        table.dropColumn('surname');
+        table.dropColumn('address');
       });
 };
