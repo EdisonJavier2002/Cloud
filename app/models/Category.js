@@ -14,7 +14,9 @@ class Category extends Model { //creo herencia de model
                 id: { type: 'integer' },
                 name: { type: 'string', minLength: 1 },
                 description: { type: 'string' },
-                code: { type: 'string' }
+                code: { type: 'string' },
+                status: { type: 'string' },
+                color: { type: 'string' }
             }
         };
 

@@ -15,6 +15,8 @@ class Product extends Model {
                 name: { type: 'string', minLength: 1 },
                 description: { type: 'string' },
                 brand: { type: 'string' },
+                stock: { type: 'integer' },
+                expiration: { type: 'string', format: 'date' },
                 category_id: { type: 'integer' }
             }
         };

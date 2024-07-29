@@ -15,6 +15,8 @@ class Order extends Model {
                 number: { type: 'string', minLength: 1 },
                 date: { type: 'string', format: 'date' },
                 address: { type: 'string' },
+                status: { type: 'string' },
+                amount: { type: 'integer' },
                 customer_id: { type: 'integer' },
                 employee_id: { type: 'integer' }
             }
